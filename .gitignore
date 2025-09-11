@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### 보안 관련 - Spring 설정파일 제외 ###
+**/application.yml
+**/application.properties
