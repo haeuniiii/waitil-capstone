@@ -1,8 +1,8 @@
 package com.waitil.wait_backend.domain.reservation;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Getter
 @Setter

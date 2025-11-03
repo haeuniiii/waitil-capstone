@@ -19,6 +19,7 @@ public class RestaurantService {
         return restaurantRepository.save(Restaurant.builder()
                 .name(dto.getName())
                 .address(dto.getAddress())
+                .description(dto.getDescription())
                 .build());
     }
     public Restaurant save(Restaurant restaurant) {

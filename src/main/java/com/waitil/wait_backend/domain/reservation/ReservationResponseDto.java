@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class ReservationResponseDto {
     private final Long reservationId;
-    private final Integer waitNumber;
+    private final Long waitNumber;
     public ReservationResponseDto(Reservation r) {
         this.reservationId = r.getReservationId();
         this.waitNumber = r.getWaitNumber();

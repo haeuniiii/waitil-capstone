@@ -1,6 +1,5 @@
 package com.waitil.wait_backend.domain.notification;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

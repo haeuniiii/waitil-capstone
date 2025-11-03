@@ -1,6 +1,5 @@
 package com.waitil.wait_backend.domain.notification;
 
-import com.waitil.wait_backend.domain.reservation.Reservation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +17,7 @@ public class NotificationService {
 
     public Notification create(NotificationRequestDto dto) {
         return notificationRepository.save(Notification.builder()
-                .reservation(Reservation.builder()
-                        .reservationId(dto.getReservationId())
-                        .build())
+                .reservation(Reservation.builder().reservationId(dto.getReservationId()).build())
                 .message(dto.getMessage())
                 .build());
     }

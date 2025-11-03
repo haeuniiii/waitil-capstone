@@ -12,6 +12,7 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final GoogleTokenVerifier googleTokenVerifier;
 
     public User getUserById(Long userId) {
         // 사용자 없으면 예외 발생
@@ -36,5 +37,25 @@ public class UserService {
 
     public void register(UserRequestDto dto) {
         create(dto);
+    }
+
+    public User loginWithGoogle(String idToken) {
+        GoogleTokenVerifier.GoogleUser googleUser = googleTokenVerifier.verifyIdToken(idToken);
+        String socialId = googleUser.sub();
+        String provider = "GOOGLE";
+
+        return userRepository.findBySocialIdAndProvider(socialId, provider)
+                .orElseGet(() -> {
+                    String nickname = (googleUser.name() != null && !googleUser.name().isBlank())
+                            ? googleUser.name()
+                            : (googleUser.email() != null ? googleUser.email().split("@")[0] : "user");
+                    User newUser = User.builder()
+                            .socialId(socialId)
+                            .provider(provider)
+                            .nickname(nickname)
+                            .profileImage(googleUser.picture())
+                            .build();
+                    return userRepository.save(newUser);
+                });
     }
 }
